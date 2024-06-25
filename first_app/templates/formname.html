@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div style = "width:50%; margin: auto;" action="todo_form.html"> 
+    <h4>Enter the list name</h4>
+    <form method = 'POST'>
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+    <a href="{% url 'todo_list' %}">View Todo List</a>
+</div>
+
+{% endblock %}

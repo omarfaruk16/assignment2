@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for item in todoname %}
+<h2 style="width: 50%; margin: auto; text-align: center; " class="card-title">TODO list name : {{item}}</h2>
+{% endfor %}
+<br>
+<h3 style=" width: 50%; margin: auto; color: red; text-align: center; " class="card-title">Tasks</h3>
+<br>
+
+<table class="table">
+    <tr>
+        <th scope="col" >Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+    </tr>
+    {% for todo in todos %}
+    <tr>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.description }}</td>
+        <td>{{ todo.status }}</td>
+           <td> 
+            <a href="{% url 'delete_todo' pk=todo.id %}" class='btn btn-danger btn-sm' >Delete</a>
+            <a href="{% url 'update_todo' pk=todo.id %}" class='btn btn-warning btn-sm' >Edit</a>
+            <a href="{% url 'complete_todo' pk=todo.id %}" class='btn btn-success btn-sm' >Complete</a>
+          </td> 
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'todo_create' %}">Create New Todo</a>
+{% endblock %}
